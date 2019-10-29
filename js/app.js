@@ -27,6 +27,6 @@ Horn.prototype.render = function(){
   //3. append to DOM
   $hornClone.appendTo('main');
 
-}
+};
 
 
