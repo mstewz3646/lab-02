@@ -29,25 +29,48 @@ Horn.prototype.render = function(){
 
 };
 
+
+Horn.prototype.filter = function(){
+  console.log ('filter');
+  
+  //do something
+  //1. create element
+  let hornClone = $('option').clone();
+ console.log(hornClone);
+ let $hornClone = $(hornClone[0]);
+ console.log($hornClone);
+  //2. give it content
+  // <option value="narwhal">Narwal</option>
+   console.log($hornClone);
+  $hornClone.attr('value', this.keyword);
+  $hornClone.text(this.keyword);
+
+  //3. append to DOM
+  $hornClone.appendTo('#animal-select');
+};
+
 Horn.readJson = () => {
   $.get('./data/page-1.json')
   .then(page => {
     page.forEach(item => {
       Horn.allHorns.push(new Horn(item));
-      console.log (item);
+      // console.log (item);
     });
   })
   .then(Horn.loadHorns);
-  console.log ('hello');
+  // console.log ('hello');
 };
 
 Horn.loadHorns = () => {
   console.log ('bye');
   Horn.allHorns.forEach(horn => {
     horn.render();
-    console.log (horn);
+    horn.filter();
+    // console.log (horn);
   });
 };
 
+console.log(Horn.allHorns);
 
 $(() => Horn.readJson());
+
