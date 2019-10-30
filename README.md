@@ -16,11 +16,15 @@ Number and name of feature: Feature 1 - Display Images
 
 Estimate of time needed to complete: 1 hour
 
-Start time: _____
+Start time: 4:30pm
 
-Finish time: _____
+Finish time: 5:0pm
 
-Actual time needed to complete: _____
+Start time: 8:00am
+
+Finish time: 9:30am
+
+Actual time needed to complete: 2 hours
 
 ---------
 
