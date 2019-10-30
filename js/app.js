@@ -29,4 +29,19 @@ Horn.prototype.render = function(){
 
 };
 
+Horn.readJson = () => {
+  $.get('./data/page-1.json')
+  .then(data => {
+    data.forEach(item => {
+      Horn.allHorns.push(new Horn(item));
+    });
+  })
+  .then(Horn.loadHorns);
+};
 
+Horn.loadHorns = () => {
+  Horn.allHorns.forEach(horn => horn.render());
+};
+
+
+$(() => Horn.readJson());
