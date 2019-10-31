@@ -12,3 +12,12 @@ section {
   width: 200px;
   float: left;
 }
+
+h1 {
+  font-family: 'Abril Fatface', cursive;
+  font-size: 3em;
+}
+
+footer {
+  clear: both;
+}
