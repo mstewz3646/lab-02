@@ -43,8 +43,9 @@ Horn.prototype.dropdown = function(){
    // Add if statement in case keyword is already in keywords array
    if (!keywords.includes(this.keyword)){
     keywords.push(this.keyword);
-  }
+}
 };
+
 
 Horn.readJson = () => {
   $.get('./data/page-1.json')
@@ -59,6 +60,7 @@ Horn.readJson = () => {
 Horn.loadHorns = () => {
   Horn.allHorns.forEach(horn => {
     horn.render();
+    horn.keywords();
     horn.filter();
   });
 };
@@ -73,10 +75,10 @@ $('select[id="animal-select"]').on('change', function() {
   }
 });
 
-// DOM-ready function
-// $(document).ready(function() {
-//   $('.tab-content').hide();
-// });
+//DOM-ready function
+ $(document).ready(function() {
+  $('section').hide();
+});
 
 $(() => Horn.readJson());
 
