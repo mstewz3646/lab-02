@@ -1,3 +1,7 @@
+main {
+  flex-wrap: wrap;
+}
+
 img {
   width: 200px;
   height: auto;
