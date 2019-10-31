@@ -16,22 +16,15 @@ Horn.allHorns = [];
 Horn.prototype.render = function(){ 
   //do something
   //1. create element
-  let hornClone = $('#photo-template').clone();
+  let template = $('#photo-template').clone();
  
-  //2. give it content
-  hornClone.find('h2').text(this.title);
-  hornClone.find('img').attr('src', this.image_url);
-  hornClone.find('p').text(this.description);
-  hornClone.removeClass('clone');
-  hornClone.attr('class', this.keyword);
-
-  //3. append to DOM
-  hornClone.appendTo('main');
-
+  let templeRender = Handlebars.compile(template);
+  return templeRender(this);
 };
+ //3. append to DOM
+ hornClone.appendTo('main');
 
-
-Horn.prototype.filter = function(){ 
+Horn.prototype.filter = function(){
   //do something
   //1. create element
   let hornClone = $('option').clone();
@@ -41,11 +34,14 @@ Horn.prototype.filter = function(){
   $hornClone.attr('value', this.keyword);
   $hornClone.text(this.keyword);
 
-  //3. append to DOM
-  
-  // Add if statement in case keyword is already in keywords array
-  if (!keywords.includes(this.keyword)){
+  //3. append to DOM  
     $hornClone.appendTo('#animal-select');
+};
+
+// Unique keywords for filter function
+Horn.prototype.dropdown = function(){
+   // Add if statement in case keyword is already in keywords array
+   if (!keywords.includes(this.keyword)){
     keywords.push(this.keyword);
   }
 };
@@ -81,7 +77,6 @@ $('select[id="animal-select"]').on('change', function() {
 // $(document).ready(function() {
 //   $('.tab-content').hide();
 // });
-
 
 $(() => Horn.readJson());
 
