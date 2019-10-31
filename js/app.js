@@ -67,5 +67,21 @@ Horn.loadHorns = () => {
   });
 };
 
+//event handler for filter
+$('select[id="animal-select"]').on('change', function() {
+  let $selection = $(this).val();
+  $('section').hide();
+  $(`section[class="${$selection}"]`).show();
+  if($selection === 'default'){
+    $('section').show();
+  }
+});
+
+// DOM-ready function
+// $(document).ready(function() {
+//   $('.tab-content').hide();
+// });
+
+
 $(() => Horn.readJson());
 

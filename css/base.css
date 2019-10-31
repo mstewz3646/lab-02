@@ -1,0 +1,14 @@
+* {
+  background-color: darkcyan;
+}
+
+img {
+  width: 200px;
+  height: auto;
+
+}
+
+section {
+  width: 200px;
+  float: left;
+}
