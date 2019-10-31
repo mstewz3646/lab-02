@@ -70,11 +70,11 @@ Horn.loadHorns = () => {
 //event handler for filter
 $('select[id="animal-select"]').on('change', function() {
   let $selection = $(this).val();
-  // console.log($selection);
   $('section').hide();
-  // $(`img[class="${$selection}"]`).show();//keyword selection show by filter
   $(`section[class="${$selection}"]`).show();
-  console.log($selection);
+  if($selection === 'default'){
+    $('section').show();
+  }
 });
 
 // DOM-ready function
