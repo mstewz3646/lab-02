@@ -11,21 +11,26 @@
     <link rel="stylesheet" href="css/module.css" />
     <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Permanent+Marker&display=swap" rel="stylesheet">
     <script id="photo-template" type="text/x-handlebars-template">
+      {{#each allHorns}}  
+      <!-- each needs an array of objects, in our case Horns.allHorns. -->
+      <!-- Here the context is each individual object from the array. So we can access its properties directly: -->
       <h2>{{title}}</h2>
       <img src="{{image_url}}" alt="">
       <p>{{description}}</p>
+    {{/each}}
+
     </script>
   </head>
   <body>
     <header>
       <h1>The Gallery of Horns</h1>
-      <label for="horn-select">Choose a horny animal</label>
-      <select name="animal" id="animal-select">
-        <option value="default">Please choose an option</option>
-      </select>
+      <label for="horn-select">Choose an animal</label>
     </header>
     <main>
-
+        <div class="content-placeholder"></div>
+        <section name="animal" id="animal-select">
+          <option value="default">Please choose an option</option>
+        </section>
     </main>
     <footer>
       &copy; 2018 Code Fellows
