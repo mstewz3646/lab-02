@@ -2,6 +2,7 @@
 
 // --------Global Variables-----------------
 let keywords = [];
+let content = {allHorns: []};
 
 function Horn(horn){
   this.image_url = horn.image_url;
@@ -19,21 +20,15 @@ Horn.prototype.render = function(){
    //2. give it content
   let templeRender = Handlebars.compile(template);
   return templeRender(this);
- //3. append to DOM
- let hornClone = $('option').clone();
-  hornClone.appendTo('main');
 };
 
 // Handlebars
 $(function () {
   // Grab the template script
   var theTemplateScript = $("#photo-template").html();
-console.log(theTemplateScript);
   // Compile the template
   var theTemplate = Handlebars.compile(theTemplateScript);
-  console.log(theTemplate);
   // Define our data object  title, image_url, description from Json files page 1 and 2
-  // console.log(Horns.allHorns);
   var context= {
     allHorns: [
       {"image_url": "https://images.unsplash.com/photo-1512636618879-bbe79107e9e3?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bd9460ee6d1ddbb6b1ca7be86dfc4590&auto=format&fit=crop&w=1825&q=80",
@@ -50,8 +45,6 @@ console.log(theTemplateScript);
     }
     ]
   }
-
-console.log(context);
   // Pass our data to the template
   var theCompiledHtml = theTemplate(context);
 
@@ -85,7 +78,7 @@ Horn.readJson = () => {
   .then(page => {
     page.forEach(item => {
       Horn.allHorns.push(new Horn(item));
-    });
+      }); 
   })
   .then(Horn.loadHorns);
 };
@@ -93,9 +86,10 @@ Horn.readJson = () => {
 Horn.loadHorns = () => {
   Horn.allHorns.forEach(horn => {
     horn.render();
-    // horn.keywords();
-    // horn.filter();
+    horn.keywords();
+    horn.filter();
   });
+  
 };
 
 //event handler for filter
