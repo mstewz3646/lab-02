@@ -2,6 +2,7 @@
 
 // --------Global Variables-----------------
 let keywords = [];
+let content = {allHorns: []};
 
 function Horn(horn){
   this.image_url = horn.image_url;
@@ -14,26 +15,51 @@ function Horn(horn){
 Horn.allHorns = [];
 
 Horn.prototype.render = function(){ 
-  //do something
   //1. create element
   let template = $('#photo-template').clone();
- 
+   //2. give it content
   let templeRender = Handlebars.compile(template);
   return templeRender(this);
 };
- //3. append to DOM
- hornClone.appendTo('main');
+
+// Handlebars
+$(function () {
+  // Grab the template script
+  var theTemplateScript = $("#photo-template").html();
+  // Compile the template
+  var theTemplate = Handlebars.compile(theTemplateScript);
+  // Define our data object  title, image_url, description from Json files page 1 and 2
+  var context= {
+    allHorns: [
+      {"image_url": "https://images.unsplash.com/photo-1512636618879-bbe79107e9e3?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bd9460ee6d1ddbb6b1ca7be86dfc4590&auto=format&fit=crop&w=1825&q=80",
+      "title": "Rhino Family",
+      "description": "Mother (or father) rhino with two babies",
+      "keyword": "rhino",
+      "horns": 2
+    },
+    { "image_url": "https://www.dhresource.com/0x0s/f2-albu-g5-M00-1A-11-rBVaI1hsIIiALxKzAAIHjSU3VkE490.jpg/wholesale-halloween-costume-prop-unicorn.jpg",
+      "title": "Unicorn Head",
+      "description": "Someone wearing a creepy unicorn head mask",
+      "keyword": "unicorn", 
+      "horns": 1
+    }
+    ]
+  }
+  // Pass our data to the template
+  var theCompiledHtml = theTemplate(context);
+
+  // Add the compiled html to the page
+  $('.content-placeholder').html(theCompiledHtml);
+});
+
 
 Horn.prototype.filter = function(){
-  //do something
   //1. create element
-  let hornClone = $('option').clone();
  let $hornClone = $(hornClone[0]);
   //2. give it content
   // <option value="narwhal">Narwal</option>
   $hornClone.attr('value', this.keyword);
   $hornClone.text(this.keyword);
-
   //3. append to DOM  
     $hornClone.appendTo('#animal-select');
 };
@@ -52,7 +78,7 @@ Horn.readJson = () => {
   .then(page => {
     page.forEach(item => {
       Horn.allHorns.push(new Horn(item));
-    });
+      }); 
   })
   .then(Horn.loadHorns);
 };
@@ -63,6 +89,7 @@ Horn.loadHorns = () => {
     horn.keywords();
     horn.filter();
   });
+  
 };
 
 //event handler for filter
@@ -75,10 +102,10 @@ $('select[id="animal-select"]').on('change', function() {
   }
 });
 
-//DOM-ready function
- $(document).ready(function() {
-  $('section').hide();
-});
+// DOM-ready function
+//  $(document).ready(function() {
+//   $('section').hide();
+// });
 
 $(() => Horn.readJson());
 
