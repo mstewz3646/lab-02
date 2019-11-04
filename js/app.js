@@ -2,7 +2,6 @@
 
 // --------Global Variables-----------------
 // let keywords = [];
-// let content = {allHorns: []};
 
 function Horn(horn){
   this.image_url = horn.image_url;
@@ -12,38 +11,13 @@ function Horn(horn){
   this.horns = horn.horns;
 }
 
-
-
 Horn.prototype.render = function(){
-  
-  //1. create element
   let template = $('#photo-template').html();
-  // console.log(template);
-   //2. give it content
   let templateRender = Handlebars.compile(template);
-  // console.log(templateRender);
-  // console.log(this);
   return templateRender(this);
 };
 
 // Handlebars
-// Horn.prototype.toHtml= (function () {
-  // Grab the template script
-  // var theTemplateScript = $("#content-placeholder").html();
-  // Compile the template
-  // var theTemplate = Handlebars.compile(theTemplateScript);
-  // Define our data object  title, image_url, description from Json files page 1 and 2
-  
-//take dataset items
-// page-1.forEach(Horn.allHorns => {
-//   Horn.allHorns.push(new Horn(neighborhoodObject));
-// });
-
-// Horn.allHorns.forEach(newhornobject => {
-//   $('#newmain').append(newhornobject.toHtml());
-// });
-
-
 // Horn.prototype.filter = function(){
 //   //1. create element
 //  let $hornClone = $(hornClone[0]);
