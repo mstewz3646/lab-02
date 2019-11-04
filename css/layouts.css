@@ -4,12 +4,15 @@ main {
 
 img {
   width: 200px;
+ max-height: 350px;
   height: auto;
 
 }
 
-section {
+div {
+  flex-wrap: wrap;
   width: 200px;
+  height: 400px;
   float: left;
 }
 
