@@ -38,9 +38,9 @@ Horn.prototype.createKeywordsArr = function(){
 
     //reformat below for new if statements
 
-Horn.readJson = () => {
+Horn.readJson = (pageNumber) => {
   Horn.allHorns = [];
-  $.get('../data/page-1.json', 'json')
+  $.get(`../data/${pageNumber}.json`, 'json')
     .then(page => {
       page.forEach(item => {
         Horn.allHorns.push(new Horn(item));
@@ -49,10 +49,10 @@ Horn.readJson = () => {
   .then(Horn.loadHorns);
 };
 
-Horn.loadHorns = () => {
+Horn.loadHorns = (pageNumber) => {
  $('main').empty();
   Horn.allHorns.forEach(horn => {
-    $('#newmain').append(horn.render());
+    $('#newmain').append(horn.render(pageNumber));
     });
 };
 
@@ -71,5 +71,6 @@ $('select[id="animal-select"]').on('change', function() {
   $('section').show();
 });
 
-$(() => Horn.readJson());
+$(() => Horn.readJson('../data/page-1'));
+$(() => Horn.readJson('../data/page-2'));
 
