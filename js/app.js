@@ -1,8 +1,5 @@
 'use strict';
 
-// --------Global Variables-----------------
-let keywords = [];
-
 function Horn(horn){
   this.image_url = horn.image_url;
   this.title = horn.title;
@@ -16,27 +13,6 @@ Horn.prototype.render = function(){
   let templateRender = Handlebars.compile(template);
   return templateRender(this);
 };
-
-// Unique keywords for filter function
-Horn.prototype.createKeywordsArr = function(){
-   if (!keywords.includes(this.keyword)){
-    keywords.push(this.keyword);
-    console.log(this.keyword);
-}
-};
-
-//Put into readJsaon below line 101
- // if page1 (){
-    //do something
-    // empty container
-    //render new content
-  //} 
-  // if page2()
-   //do something
-    // empty container
-    //render new content
-
-    //reformat below for new if statements
 
 Horn.readJson = (pageNumber) => {
   Horn.allHorns = [];
@@ -68,9 +44,8 @@ $('select[id="animal-select"]').on('change', function() {
 
 //DOM-ready function
  $(document).ready(function() {
-  $('section').show();
+  $('div').hide();
 });
 
 $(() => Horn.readJson('../data/page-1'));
-$(() => Horn.readJson('../data/page-2'));
 
