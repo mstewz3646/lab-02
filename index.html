@@ -18,6 +18,13 @@
   </head>
   <body>
     <header>
+      <nav>
+          <!-- https://www.w3schools.com/tags/tryit.asp?filename=tryhtml5_global_data -->
+        <ul>
+          <li onclick="$(() => Horn.readJson('../data/page-1'));", id="pageone">Page 1</li>
+          <li onclick="$(() => Horn.readJson('../data/page-2'));", id="pageone">Page 2</li>
+        </ul>
+      </nav>
       <h1>The Gallery of Horns</h1>
       <label form="horn-select">Choose an animal</label>
     </header>

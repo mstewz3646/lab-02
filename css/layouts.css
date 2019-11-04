@@ -21,6 +21,11 @@ h1 {
   font-size: 3em;
 }
 
+ul li {
+  display: inline;
+  margin-left: 20px;
+}
+
 footer {
   clear: both;
 }
