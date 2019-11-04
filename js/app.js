@@ -1,7 +1,7 @@
 'use strict';
 
 // --------Global Variables-----------------
-// let keywords = [];
+let keywords = [];
 
 function Horn(horn){
   this.image_url = horn.image_url;
@@ -17,26 +17,13 @@ Horn.prototype.render = function(){
   return templateRender(this);
 };
 
-// Handlebars
-// Horn.prototype.filter = function(){
-//   //1. create element
-//  let $hornClone = $(hornClone[0]);
-//   //2. give it content
-//   // <option value="narwhal">Narwal</option>
-//   $hornClone.attr('value', this.keyword);
-//   $hornClone.text(this.keyword);
-//   //3. append to DOM  
-//     $hornClone.appendTo('#animal-select');
-// };
-
-// // Unique keywords for filter function
-// Horn.prototype.dropdown = function(){
-//    // Add if statement in case keyword is already in keywords array
-//    if (!keywords.includes(this.keyword)){
-//     keywords.push(this.keyword);
-// }
-// };
-
+// Unique keywords for filter function
+Horn.prototype.createKeywordsArr = function(){
+   if (!keywords.includes(this.keyword)){
+    keywords.push(this.keyword);
+    console.log(this.keyword);
+}
+};
 
 //Put into readJsaon below line 101
  // if page1 (){
@@ -66,27 +53,23 @@ Horn.loadHorns = () => {
  $('main').empty();
   Horn.allHorns.forEach(horn => {
     $('#newmain').append(horn.render());
-    // console.log('render');
-    // horn.keywords();
-    // horn.filter();
-  });
-  
+    });
 };
 
 // //event handler for filter
-// $('select[id="animal-select"]').on('change', function() {
-//   let $selection = $(this).val();
-//   $('section').hide();
-//   $(`section[class="${$selection}"]`).show();
-//   if($selection === 'default'){
-//     $('section').show();
-//   }
-// });
+$('select[id="animal-select"]').on('change', function() {
+  let $selection = $(this).val();
+  $('div').hide();
+  $(`div[class="${$selection}"]`).show();
+  if($selection === 'default'){
+    $('div').show();
+  }
+});
 
 //DOM-ready function
-//  $(document).ready(function() {
-//   $('section').show();
-// });
+ $(document).ready(function() {
+  $('section').show();
+});
 
 $(() => Horn.readJson());
 
